@@ -1,4 +1,4 @@
-package com.celulaMinTic.ManejoFinanzas.entities;
+package com.misiontic.manejofinanzas.entities;
 
 
 public class ManejoDinero {
