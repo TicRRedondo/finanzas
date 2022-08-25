@@ -11,7 +11,9 @@ public class ManejoDinero {
         this.monto = monto;
     }
 
+
     public int getUserId() {
+
         return userId;
     }
 
