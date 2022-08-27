@@ -7,11 +7,11 @@ public class MovimientoDinero {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private float monto;
+    private double monto;
     private String concepto;
     @ManyToOne
     @JoinColumn(name = "id_emp")
-    private Empleado empleado;//es el mismo nombre plasmado en clase Empleado linea 13
+    private Empleado empleado;
 
     public MovimientoDinero(    ) {
 
@@ -25,11 +25,11 @@ public class MovimientoDinero {
         this.id = id;
     }
 
-    public float getMonto() {
+    public double getMonto() {
         return monto;
     }
 
-    public void setMonto(float monto) {
+    public void setMonto(double monto) {
         this.monto = monto;
     }
 
