@@ -8,13 +8,13 @@
 		<version>2.7.3</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.misiontic</groupId>
-	<artifactId>finanzas</artifactId>
+	<groupId>com.misiontic.manejofinanzas</groupId>
+	<artifactId>ManejoFinanzas</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>manejofinanzas</name>
+	<name>ManejoFinanzas</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>15</java.version>
+		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
