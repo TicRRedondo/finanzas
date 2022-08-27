@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class MovimientoDinero {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idMovimiento;
+    private long idMovimiento;
     private double monto;
     private String concepto;
     @ManyToOne
@@ -17,7 +17,7 @@ public class MovimientoDinero {
 
     }
 
-    public Long getIdMovimiento() {
+    public long getIdMovimiento() {
         return idMovimiento;
     }
 
