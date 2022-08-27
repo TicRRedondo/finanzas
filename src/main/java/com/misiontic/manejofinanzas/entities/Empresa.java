@@ -1,19 +1,21 @@
 package com.misiontic.manejofinanzas.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Empresa {
     //atributo
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-  private long idempresa;
-  private String nit;
-  private String nombre;
+    private long idempresa;
+    private String nit;
+    private String nombre;
 
-  private String direccion;
-     @OneToMany(mappedBy = "empresa")
-     private List<Empleado>empleadoList= new Empleado();
+    private String direccion;
+    @OneToMany(mappedBy = "empresa")
+    private List<Empleado> empleadoList = new ArrayList<>();
 
     public List<Empleado> getEmpleadoList() {
         return empleadoList;

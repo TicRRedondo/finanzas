@@ -12,10 +12,10 @@ public class Empleado {
     private String nombre;
     private String email;
     @OneToMany(mappedBy = "empleado")
-    private List<MovimientoDeDinero> movimientoDeDineros;
+    private List<MovimientoDinero> movimientoDineros;
 
     @ManyToOne
-    @JoinColumn(name = "empresa_id")
+    @JoinColumn(name = "idempresa")
     private List<Empresa> empresaList;
 
 
@@ -47,12 +47,12 @@ public class Empleado {
         this.email = email;
     }
 
-    public List<MovimientoDeDinero> getMovimientoDeDineros() {
-        return movimientoDeDineros;
+    public List<MovimientoDinero> getMovimientoDineros() {
+        return movimientoDineros;
     }
 
-    public void setMovimientoDeDineros(List<MovimientoDeDinero> movimientoDeDineros) {
-        this.movimientoDeDineros = movimientoDeDineros;
+    public void setMovimientoDineros(List<MovimientoDinero> movimientoDineros) {
+        this.movimientoDineros = movimientoDineros;
     }
 
     public List<Empresa> getEmpresaList() {

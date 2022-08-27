@@ -10,7 +10,7 @@ public class MovimientoDinero {
     private double monto;
     private String concepto;
     @ManyToOne
-    @JoinColumn(name = "id_emp")
+    @JoinColumn(name = "id")
     private Empleado empleado;
 
     public MovimientoDinero(    ) {
