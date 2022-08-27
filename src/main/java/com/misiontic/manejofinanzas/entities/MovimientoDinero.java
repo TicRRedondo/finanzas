@@ -6,30 +6,30 @@ import javax.persistence.*;
 public class MovimientoDinero {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private float monto;
+    private Long idMovimiento;
+    private double monto;
     private String concepto;
     @ManyToOne
     @JoinColumn(name = "id_emp")
-    private Empleado empleado;//es el mismo nombre plasmado en clase Empleado linea 13
+    private Empleado empleado;
 
     public MovimientoDinero(    ) {
 
     }
 
-    public Long getId() {
-        return id;
+    public Long getIdMovimiento() {
+        return idMovimiento;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdMovimiento(Long idMovimiento) {
+        this.idMovimiento = idMovimiento;
     }
 
-    public float getMonto() {
+    public double getMonto() {
         return monto;
     }
 
-    public void setMonto(float monto) {
+    public void setMonto(double monto) {
         this.monto = monto;
     }
 
