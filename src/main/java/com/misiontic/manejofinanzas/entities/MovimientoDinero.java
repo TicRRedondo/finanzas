@@ -1,51 +1,33 @@
 package com.misiontic.manejofinanzas.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.Setter;
+
+
 import javax.persistence.*;
 
+@Getter
+@Setter
 @Entity
 public class MovimientoDinero {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long idMovimiento;
-    private double monto;
+    @Column(name = "id_mov")
+    private Long id;
+    @Column(name = "Monto")
+    private float monto;
+    @Column(name = "Concepto")
     private String concepto;
-    @ManyToOne
-    @JoinColumn(name = "id")
+
+    @JsonIgnore
+    @JoinColumn(name = "id_emp")
+    @ManyToOne(fetch = FetchType.LAZY)
     private Empleado empleado;
 
     public MovimientoDinero(    ) {
 
     }
 
-    public long getIdMovimiento() {
-        return idMovimiento;
-    }
 
-    public void setIdMovimiento(Long idMovimiento) {
-        this.idMovimiento = idMovimiento;
-    }
-
-    public double getMonto() {
-        return monto;
-    }
-
-    public void setMonto(double monto) {
-        this.monto = monto;
-    }
-
-    public String getConcepto() {
-        return concepto;
-    }
-
-    public void setConcepto(String concepto) {
-        this.concepto = concepto;
-    }
-
-    public Empleado getEmpleado() {
-        return empleado;
-    }
-
-    public void setEmpleado(Empleado empleado) {
-        this.empleado = empleado;
-    }
 }
