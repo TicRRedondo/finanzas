@@ -1,27 +1,27 @@
-package com.misiontic.manejofinanzas.entities;
+package com.misiontic.manejofinanzas.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
-
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Getter
 @Setter
 @Entity
+@Table(name = "movimientos")
 public class MovimientoDinero {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_mov")
     private Long id;
-    @Column(name = "Monto")
+    @Column
     private float monto;
-    @Column(name = "Concepto")
+    @Column
     private String concepto;
+    @Column
+    private LocalDate fecha;
 
-    @JsonIgnore
-    @JoinColumn(name = "id_emp")
+
     @ManyToOne(fetch = FetchType.LAZY)
     private Empleado empleado;
 
