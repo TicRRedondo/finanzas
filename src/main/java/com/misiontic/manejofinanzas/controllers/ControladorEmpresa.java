@@ -1,9 +1,16 @@
 package com.misiontic.manejofinanzas.controllers;
 
-import com.misiontic.manejofinanzas.entities.MovimientoDinero;
-import com.misiontic.manejofinanzas.services.MovimientoDineroServicio;
+
+
+import com.misiontic.manejofinanzas.models.Empresa;
+import com.misiontic.manejofinanzas.models.MovimientoDinero;
+import com.misiontic.manejofinanzas.services.EmpresaService;
+import com.misiontic.manejofinanzas.services.MovimientoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -11,23 +18,53 @@ import java.util.List;
 @RequestMapping("/enterprises")
 public class ControladorEmpresa {
 
-
     @Autowired
-    MovimientoDineroServicio servicioDinero;
+    EmpresaService servicioEmpresa;
+    @Autowired
+    MovimientoService servicioDinero;
 
 
+    @GetMapping("")
+    public List<Empresa> getEmpresas() {
 
+       return this.servicioEmpresa.getEmpresas();
+
+    }
+
+    @GetMapping("/{id}")
+    public Empresa getEmpresa(@PathVariable("id") int id) {
+        return this.servicioEmpresa.getEmpresa(id);
+    }
+
+    @PostMapping("")
+    public RedirectView crearEmpresa(@ModelAttribute Empresa empresaNueva, Model model) {
+        model.addAttribute(empresaNueva);
+        this.servicioEmpresa.postEmpresa(empresaNueva);
+        return new RedirectView("/lista-empresas");
+    }
+
+    @PatchMapping("/{id}")
+    public void patchEmpresa(@PathVariable("id") long id, @RequestBody Empresa datos) {
+        this.servicioEmpresa.patchEmpresa(id, datos);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteEmpresa(@PathVariable("id") long id) {
+        this.servicioEmpresa.deleteEmpresa(id);
+    }
 
     //--------------Servicios para movimiento de dinero---------------------------
 
-    @GetMapping("/{id}/movements")
+    @GetMapping("/movements")
     public List<MovimientoDinero> getMovimientos(@PathVariable("id") long id) {
-        return this.servicioDinero.getMovimientos(id);
+        return this.servicioDinero.getMovimientos();
     }
 
     @PostMapping("/movements")
-    public MovimientoDinero postMovimiento(@RequestBody MovimientoDinero movimientoNuevo) {
-        return this.servicioDinero.postMovimiento(movimientoNuevo);
+    public RedirectView postMovimiento(@ModelAttribute @DateTimeFormat(pattern = "YYYY-MM-DD") MovimientoDinero movimientoNuevo, Model model) {
+        model.addAttribute(movimientoNuevo);
+        this.servicioDinero.postMovimiento(movimientoNuevo);
+        return new RedirectView("/lista-movimientos");
     }
 
     @PatchMapping("/{id}/movements")

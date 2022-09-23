@@ -1,67 +1,51 @@
 package com.misiontic.manejofinanzas.services;
 
-import com.misiontic.manejofinanzas.entities.Empleado;
-import com.misiontic.manejofinanzas.repositories.EmpleadoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.misiontic.manejofinanzas.models.Empleado;
+import com.misiontic.manejofinanzas.repositories.EmpleadoRepositorio;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
-public class EmpleadoService {
+public class EmpleadoService{
 
-    @Autowired
-    EmpleadoRepository empleadoRepository;
+    EmpleadoRepositorio repositorio;
 
-    public void CrearYActualizarEmpleado(Empleado empleado){
-
-        empleadoRepository.save(empleado);
+    public EmpleadoService(EmpleadoRepositorio repositorio) {
+        this.repositorio = repositorio;
     }
 
-    public List<Empleado> verEmpleados(){
-
-        List<Empleado> empleados= new ArrayList<>();
-        empleados.addAll(empleadoRepository.findAll());
-
-        return empleados;
+    public List<Empleado> getEmpleados() {
+        return this.repositorio.findAll();
     }
 
-    public void eliminarEmpleado(Long id){
-
-        empleadoRepository.deleteById(id);
-
+    public Empleado getEmpleado(long id) {
+        return this.repositorio.findById(id).get();
     }
 
-    public Empleado getEmpleado(Long id)throws Exception{
-        Optional<Empleado> empleadoOptional = empleadoRepository.findById(id);
-        if(empleadoOptional.isPresent()){
-            return empleadoOptional.get();
-        }else{
-            throw new Exception("Empleado No Existe");
+    public Empleado getEmpleado(String email){
+        return this.repositorio.findByEmail(email);
+    }
+
+    public Empleado postEmpleado(Empleado empleadoNuevo) {
+
+        return this.repositorio.save(empleadoNuevo);
+    }
+
+    public void patchEmpleado(long id, Empleado actualizarEmpleado) {
+        Empleado empleadoActualizar = this.repositorio.findById(id).get();
+        if (this.repositorio.findById(id).isPresent()) {
+            if (actualizarEmpleado.getId() != 0) empleadoActualizar.setId(actualizarEmpleado.getId());
+            if (actualizarEmpleado.getNombre() != null) empleadoActualizar.setNombre(actualizarEmpleado.getNombre());
+            if (actualizarEmpleado.getEmail() != null) empleadoActualizar.setEmail(actualizarEmpleado.getEmail());
+            this.repositorio.save(empleadoActualizar);
         }
     }
 
-    public Empleado saveEmpleado(Empleado empleado_param){
-        return empleadoRepository.save(empleado_param);
+    public void deleteEmpleado(long id) {
+        this.repositorio.deleteById(id);
     }
 
-    public Empleado patchEmpleado(Empleado empleado_param, Long id) throws Exception {
-        try {
-            Empleado empleadoDb = getEmpleado(id);
 
-            if(empleado_param.getNombre() != null){
-                empleadoDb.setNombre(empleado_param.getNombre());
-            }
-            if(empleado_param.getEmail() != null){
-                empleadoDb.setEmail(empleado_param.getEmail());
-            }
-
-            return saveEmpleado(empleadoDb);
-
-        } catch (Exception e) {
-            throw new Exception("Empleado no se actualizo, porque no existe");
-        }
-    }
 }

@@ -1,23 +1,24 @@
 package com.misiontic.manejofinanzas.services;
 
 
-import com.misiontic.manejofinanzas.entities.MovimientoDinero;
+
+import com.misiontic.manejofinanzas.models.MovimientoDinero;
 import com.misiontic.manejofinanzas.repositories.DineroRepositorio;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class MovimientoDineroServicio {
+public class MovimientoService {
 
     DineroRepositorio repositorio;
 
-    public MovimientoDineroServicio(DineroRepositorio repositorio) {
+    public MovimientoService(DineroRepositorio repositorio) {
         this.repositorio = repositorio;
     }
 
-    public List<MovimientoDinero> getMovimientos(long id) {
-        return this.repositorio.findById(id).get().getEmpleado().getMovimientoDineros();
+    public List<MovimientoDinero> getMovimientos() {
+        return this.repositorio.findAll();
     }
 
     public MovimientoDinero getMovimiento(long id){
