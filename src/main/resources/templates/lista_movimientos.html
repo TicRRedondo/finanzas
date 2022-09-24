@@ -74,6 +74,7 @@
                     <th scope="col">Concepto</th>
                     <th scope="col">Monto</th>
                     <th scope="col">Fecha</th>
+                    <th scope="col">Empleado</th>
 
                 </tr>
                 </thead>
@@ -83,10 +84,11 @@
                     <td th:text="${movimiento.concepto}"></td>
                     <td th:text="${movimiento.monto}" ></td>
                     <td th:text="${movimiento.fecha}"></td>
+                    <td th:text="${movimiento.empleado.nombre}"></td>
                     <td >
-                        <div class="btn btn-primary"><a class="acolorb" th:href="@{/modificar-movimiento/} + ${movimiento.id}">Modificar</a>
+                        <div class="btn btn-primary" sec:authorized="hasRole('ADMIN')"><a class="acolorb" th:href="@{/modificar-movimiento/} + ${movimiento.id}">Modificar</a>
                         </div>
-                        <div class="btn btn-danger"><a class="acolorb" th:href="@{/eliminar-movimiento/} + ${movimiento.id}">Eliminar</a>
+                        <div class="btn btn-danger" sec:authorized="hasRole('ADMIN')"><a class="acolorb" th:href="@{/eliminar-movimiento/} + ${movimiento.id}">Eliminar</a>
                         </div>
                     </td>
                 </tr>
