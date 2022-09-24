@@ -13,21 +13,19 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Autowired
     EmpleadoService empleadoService;
+    public static Empleado empleado;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Empleado empleado =null;
-        System.out.println(username);
+        empleado =null;
         try{
             empleado=empleadoService.getEmpleado(username);
-            System.out.println(empleado.toString());
             return new MyUserDetails(empleado);
         }catch (Exception e){
             e.printStackTrace();
             throw new UsernameNotFoundException(e.getMessage());
 
         }
-
 
     }
 }

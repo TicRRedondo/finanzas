@@ -58,8 +58,13 @@
         </nav>
         <!-- Navbar -->
     </header>
-
+    <div class="d-flex justify-content-end">
+        <div class="btn btn-primary"><a class="acolorb" th:href="@{/registro-movimiento}">Agregar Nuevo</a>
+        </div>
+    </div>
     <div class="tablas rounded">
+
+
         <!--shadow-lg p-3 mb-5 bg-body rounded centrado-->
         <div class="centrado-block">
             <table class="table table-striped table-hover" >
@@ -74,7 +79,7 @@
                 </thead>
                 <tbody>
                 <tr th:each="movimiento : ${movimientos}" >
-                    <th scope="row" ></th>
+                    <th scope="row" th:text="${movimientoStat.index}+1" ></th>
                     <td th:text="${movimiento.concepto}"></td>
                     <td th:text="${movimiento.monto}" ></td>
                     <td th:text="${movimiento.fecha}"></td>

@@ -1,6 +1,6 @@
 package com.misiontic.manejofinanzas.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
