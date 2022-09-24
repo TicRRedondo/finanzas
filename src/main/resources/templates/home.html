@@ -9,7 +9,7 @@
     <title>Ingreso Sistema Contable</title>
 </head>
 <body>
-<h2  th:if="${empleado.id!=0}">Bienvenido    <strong th:text="${empleado.nombre}"></strong></h2>
+<h2 sec:authorize="isAuthenticated()" >Bienvenido </h2>
 <br>
 <br><br>
 <br>

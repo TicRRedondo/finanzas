@@ -32,7 +32,7 @@ public class FrontendControlador {
 
     @GetMapping(value={"/","/home"})
     public String home(Model model){
-        model.addAttribute("empleado",empleadoLogin);
+        model.addAttribute("empleadolog",empleadoLogin);
         return "home";
     }
 
