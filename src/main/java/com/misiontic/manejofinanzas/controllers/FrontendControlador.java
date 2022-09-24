@@ -28,9 +28,11 @@ public class FrontendControlador {
     @Autowired
     MovimientoService movimientoService;
 
+    public Empleado empleadoLogin = MyUserDetailsService.empleado;
+
     @GetMapping(value={"/","/home"})
     public String home(Model model){
-        model.addAttribute("empleado",MyUserDetailsService.empleado);
+        model.addAttribute("empleado",empleadoLogin);
         return "home";
     }
 
@@ -60,6 +62,7 @@ public class FrontendControlador {
     public String getEmpleados(Model model){
         List<Empleado> listaEmpleados=this.empleadoService.getEmpleados();
         model.addAttribute("empleados",listaEmpleados);
+        model.addAttribute("empleadologin",empleadoLogin);
         return "lista_empleados";
     }
 
@@ -98,6 +101,7 @@ public class FrontendControlador {
     @GetMapping("/lista-empresas")
     public String getEmpresas(Model model){
         List<Empresa> listaEmpresas=this.empresaService.getEmpresas();
+        model.addAttribute("empleadologin",empleadoLogin);
         model.addAttribute("empresas",listaEmpresas);
         return "lista_empresas";
     }
@@ -142,10 +146,11 @@ public class FrontendControlador {
 
     @GetMapping("/lista-movimientos")
     public String getMovimientos(Model model){
-        List<Empleado> empleadosL = this.empleadoService.getEmpleados();
+        List<Empleado> emplist = empleadoService.getEmpleados();
         List<MovimientoDinero> listaMovimientos=this.movimientoService.getMovimientos();
         model.addAttribute("movimientos",listaMovimientos);
-        model.addAttribute("empleados",empleadosL);
+        model.addAttribute("empleadologin",empleadoLogin);
+        model.addAttribute("empleados",emplist);
         return "lista_movimientos";
     }
 
