@@ -13,7 +13,7 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Autowired
     EmpleadoService empleadoService;
-    public static Empleado empleado;
+    private static Empleado empleado;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -29,5 +29,9 @@ public class MyUserDetailsService implements UserDetailsService {
 
         }
 
+    }
+
+    public Empleado getEmpleado(){
+        return empleado;
     }
 }

@@ -41,20 +41,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/modificar-empresa",
                         "/eliminar-empresa",
                         "/eliminar-movimiento",
-                        "/registro-empresa",
-                        "/user**",
                         "/enterprises**",
-                        "/modificar-empleado*"
-                ).hasRole("ADMIN")
-                .antMatchers(
+                        "/modificar-empleado*",
                         "/adm-empleados",
                         "/lista-empleados",
                         "/registro-empleado*",
                         "/adm-empresas",
                         "/lista-empresas",
                         "/adm-movimientos",
-                        "/lista-movimientos"
-
+                        "/lista-movimientos",
+                        "/registro-empresa",
+                        "/user"
 
                 )
                 .authenticated()
